@@ -1,42 +1,35 @@
-[gd_scene load_steps=12 format=3 uid="uid://cl3llyp26ag5j"]
+[gd_scene load_steps=17 format=3 uid="uid://cl3llyp26ag5j"]
 
 [ext_resource type="Script" uid="uid://5owwbm5431p" path="res://scenes/mob/mob.gd" id="1_wplut"]
-[ext_resource type="Texture2D" uid="uid://ilcmsrnw7hax" path="res://assets/Character/Cat_Anim.png" id="2_15kaj"]
+[ext_resource type="Texture2D" uid="uid://dnkgf724f7er3" path="res://assets/Character/mobs/goblin_idle_anim_f0.png" id="2_ecghj"]
+[ext_resource type="Texture2D" uid="uid://crw4vspxkl762" path="res://assets/Character/mobs/goblin_idle_anim_f1.png" id="3_wec7m"]
+[ext_resource type="Texture2D" uid="uid://cggmdducqq4dr" path="res://assets/Character/mobs/goblin_idle_anim_f2.png" id="4_i8tx3"]
+[ext_resource type="Texture2D" uid="uid://dn3eg1f2ll5as" path="res://assets/Character/mobs/goblin_idle_anim_f3.png" id="5_vhs1m"]
+[ext_resource type="Texture2D" uid="uid://ca2fkcvi8tdsg" path="res://assets/Character/mobs/goblin_idle_anim_f0_2.png" id="6_ufv5g"]
+[ext_resource type="Texture2D" uid="uid://yd6auxih51pl" path="res://assets/Character/mobs/goblin_run_anim_f0.png" id="6_vhs1m"]
+[ext_resource type="Texture2D" uid="uid://bqk3yiw25oqm" path="res://assets/Character/mobs/goblin_run_anim_f1.png" id="7_81as3"]
+[ext_resource type="Texture2D" uid="uid://c7h6nfjfxa3xu" path="res://assets/Character/mobs/goblin_idle_anim_f1_2.png" id="7_xka8w"]
+[ext_resource type="Texture2D" uid="uid://ga5xce470lxk" path="res://assets/Character/mobs/goblin_run_anim_f2.png" id="8_4vj78"]
+[ext_resource type="Texture2D" uid="uid://dfybop3dqt4nq" path="res://assets/Character/mobs/goblin_idle_anim_f2_2.png" id="8_onxr1"]
+[ext_resource type="Texture2D" uid="uid://dnceuguxref2o" path="res://assets/Character/mobs/goblin_idle_anim_f3_2.png" id="9_canii"]
+[ext_resource type="Texture2D" uid="uid://c3skrh5b6pgd1" path="res://assets/Character/mobs/goblin_run_anim_f3.png" id="9_j02m4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w1pya"]
-atlas = ExtResource("2_15kaj")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rs1u2"]
-atlas = ExtResource("2_15kaj")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t6j5l"]
-atlas = ExtResource("2_15kaj")
-region = Rect2(0, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7kpxk"]
-atlas = ExtResource("2_15kaj")
-region = Rect2(48, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_twa4u"]
-atlas = ExtResource("2_15kaj")
-region = Rect2(96, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sv32n"]
-atlas = ExtResource("2_15kaj")
-region = Rect2(144, 144, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f1ej7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w1pya")
+"texture": ExtResource("2_ecghj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rs1u2")
+"texture": ExtResource("3_wec7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i8tx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vhs1m")
 }],
 "loop": true,
 "name": &"idle",
@@ -44,16 +37,33 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t6j5l")
+"texture": ExtResource("6_ufv5g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7kpxk")
+"texture": ExtResource("7_xka8w")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_twa4u")
+"texture": ExtResource("8_onxr1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sv32n")
+"texture": ExtResource("9_canii")
+}],
+"loop": true,
+"name": &"lock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vhs1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_81as3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4vj78")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_j02m4")
 }],
 "loop": true,
 "name": &"walk",
@@ -69,24 +79,28 @@ collision_layer = 0
 script = ExtResource("1_wplut")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -4)
 scale = Vector2(0.5947588, 0.61510766)
 shape = SubResource("CircleShape2D_u8vuu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -11)
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_f1ej7")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.4058156
+frame_progress = 0.039863728
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -12)
-scale = Vector2(1, 0.8800008)
+position = Vector2(1, -6)
+scale = Vector2(0.84000045, 0.68000096)
 shape = SubResource("CapsuleShape2D_wplut")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

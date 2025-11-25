@@ -26,7 +26,7 @@ func _on_timer_timeout() -> void:
 	
 	var enemy_pos = mobs[0].global_position
 	var attack_instance = attack_abbility.instantiate() as Node2D
+	attack_instance.direction = (enemy_pos - player_pos).normalized()
 	player.get_parent().add_child(attack_instance)
-	attack_instance.global_position = (player_pos+enemy_pos) / 2
-	attack_instance.look_at(enemy_pos)
+	attack_instance.global_position = player_pos
 	pass
