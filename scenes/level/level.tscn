@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://ddds6n5ljheaj"]
+[gd_scene load_steps=6 format=4 uid="uid://ddds6n5ljheaj"]
 
 [ext_resource type="TileSet" uid="uid://b51c68ikrsa5l" path="res://scenes/level/level.tres" id="1_h3e3j"]
-[ext_resource type="PackedScene" uid="uid://ce2kepi2tpbxv" path="res://scenes/player/Player.tscn" id="2_nbgty"]
-[ext_resource type="PackedScene" uid="uid://cl3llyp26ag5j" path="res://scenes/mob/Mob.tscn" id="3_i166f"]
+[ext_resource type="PackedScene" uid="uid://ce2kepi2tpbxv" path="res://scenes/objects/player/Player.tscn" id="2_nbgty"]
+[ext_resource type="PackedScene" uid="uid://cl3llyp26ag5j" path="res://scenes/objects/mob/Mob.tscn" id="3_i166f"]
+[ext_resource type="PackedScene" uid="uid://s0la73bw4xt4" path="res://scenes/managers/spawner/MobSpawner.tscn" id="3_l1x8v"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i166f"]
 vertices = PackedVector2Array(12647.477, 131.35156, -10634.477, 130.79688, -10634.477, -95.328125, 12647.477, -95.86719)
@@ -21,12 +22,7 @@ navigation_polygon = SubResource("NavigationPolygon_i166f")
 
 [node name="Player" parent="." instance=ExtResource("2_nbgty")]
 position = Vector2(45, 38)
-speed = 150
 
-[node name="Mob" parent="." instance=ExtResource("3_i166f")]
-position = Vector2(257, 176)
-speed = 50
-
-[node name="Mob2" parent="." instance=ExtResource("3_i166f")]
-position = Vector2(142, 157)
-speed = 50
+[node name="MobSpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_l1x8v")]
+mob_scene = ExtResource("3_i166f")
+player = NodePath("../Player")

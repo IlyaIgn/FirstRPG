@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
+@export var move_by_mouse : bool = false
 @export var player_speed : int = 150
 @export var nav_agent : NavigationAgent2D
+var acceleration = 0.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,13 +11,19 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if move_by_mouse:
+		return
+		
 	var direction = move_player()
-	if direction != Vector2.ZERO:
-		velocity = direction * player_speed
-		play_animation(direction)
-		move_and_slide()
+	var target_velocity = direction * player_speed
+	velocity = velocity.lerp(target_velocity, acceleration)
+	play_animation(direction)
+	move_and_slide()
 	
 func _physics_process(delta: float) -> void:
+	if not move_by_mouse:
+		return
+		
 	if NavigationServer2D.map_get_iteration_id(nav_agent.get_navigation_map()) == 0:
 		return
 		

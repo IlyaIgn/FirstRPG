@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var need_lock : bool = false
 @export var speed : int = 200
 @export var lock_time_sec : int = 4
 var is_lock = false
@@ -10,11 +11,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if !is_lock:
-		var direction = move_player()
-		velocity = direction * speed
-		play_animation(direction)
-		move_and_slide()
+	if need_lock and is_lock:
+		return
+		
+	var direction = move_player()
+	velocity = direction * speed
+	play_animation(direction)
+	move_and_slide()
 
 func move_player():
 	var player = get_tree().get_first_node_in_group("Player") as Node2D
@@ -33,13 +36,15 @@ func play_animation(direction: Vector2):
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	var animation_sprite : AnimatedSprite2D = get_node("AnimatedSprite2D")
-	var mob_timer = get_node("Timer") as Timer
-	if mob_timer:
-		mob_timer.start(lock_time_sec)
-		animation_sprite.play("lock")
-		is_lock = true
-
+	if need_lock:
+		var animation_sprite : AnimatedSprite2D = get_node("AnimatedSprite2D")
+		var mob_timer = get_node("Timer") as Timer
+		if mob_timer:
+			mob_timer.start(lock_time_sec)
+			animation_sprite.play("lock")
+			is_lock = true
+	else:
+		queue_free()
 
 func _on_timer_timeout() -> void:
 	var animation_sprite : AnimatedSprite2D = get_node("AnimatedSprite2D")
