@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b1k5f5hxslxl1" path="res://scenes/managers/attack/attack_controller.tscn" id="2_524rm"]
 [ext_resource type="Texture2D" uid="uid://b8v0ide5sf4pj" path="res://assets/Character/new_character.png" id="3_4kuee"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8krch"]
+radius = 32.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_524rm"]
@@ -141,13 +144,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8krch"]
-radius = 32.0
-
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent") groups=["Player"]]
 collision_layer = 0
 script = ExtResource("1_gmlin")
 nav_agent = NodePath("NavigationAgent2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+light_mask = 16
+visibility_layer = 16
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_8krch")
 
 [node name="AbilityManager" type="Node" parent="."]
 
@@ -169,11 +177,3 @@ frame_progress = 0.95590335
 position_smoothing_enabled = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-light_mask = 16
-visibility_layer = 16
-position = Vector2(0, -11)
-shape = SubResource("CircleShape2D_8krch")

@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var need_lock : bool = false
 @export var speed : int = 200
 @export var lock_time_sec : int = 4
+@onready var healt_manager: Node2D = $HealtManager
+
 var is_lock = false
 
 # Called when the node enters the scene tree for the first time.
@@ -44,7 +46,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			animation_sprite.play("lock")
 			is_lock = true
 	else:
-		queue_free()
+		healt_manager.damage(5)
 
 func _on_timer_timeout() -> void:
 	var animation_sprite : AnimatedSprite2D = get_node("AnimatedSprite2D")

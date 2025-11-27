@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://cl3llyp26ag5j"]
+[gd_scene load_steps=18 format=3 uid="uid://cl3llyp26ag5j"]
 
 [ext_resource type="Script" uid="uid://5owwbm5431p" path="res://scenes/objects/mob/mob.gd" id="1_wplut"]
 [ext_resource type="Texture2D" uid="uid://dnkgf724f7er3" path="res://assets/Character/mobs/goblin_idle_anim_f0.png" id="2_ecghj"]
+[ext_resource type="PackedScene" uid="uid://b2ayevqw6lkg8" path="res://scenes/components/healt/HealtManager.tscn" id="2_giitt"]
 [ext_resource type="Texture2D" uid="uid://crw4vspxkl762" path="res://assets/Character/mobs/goblin_idle_anim_f1.png" id="3_wec7m"]
 [ext_resource type="Texture2D" uid="uid://cggmdducqq4dr" path="res://assets/Character/mobs/goblin_idle_anim_f2.png" id="4_i8tx3"]
 [ext_resource type="Texture2D" uid="uid://dn3eg1f2ll5as" path="res://assets/Character/mobs/goblin_idle_anim_f3.png" id="5_vhs1m"]
@@ -78,6 +79,9 @@ height = 23.80951
 collision_layer = 0
 script = ExtResource("1_wplut")
 speed = 75
+
+[node name="HealtManager" parent="." instance=ExtResource("2_giitt")]
+max_health = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
