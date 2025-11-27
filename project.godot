@@ -15,6 +15,10 @@ run/main_scene="uid://ddds6n5ljheaj"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://scenes/global/global.tscn"
+
 [display]
 
 window/size/viewport_width=640
@@ -56,6 +60,8 @@ move_by_click={
 2d_render/layer_1="world"
 2d_render/layer_2="player"
 2d_render/layer_3="enemy"
+2d_render/layer_4="attack_ability"
+2d_render/layer_5="resources"
 
 [rendering]
 
