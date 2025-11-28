@@ -9,6 +9,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position += direction * speed * delta
 
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	queue_free()

@@ -14,16 +14,20 @@ vertices = PackedVector2Array(12647.477, 131.35156, -10634.477, 130.79688, -1063
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-10644.482, -98.672554, -10644.482, 140.80241, 12657.4795, 141.35675, 12657.4795, -105.878975, -10705.482, -105.32464)])
 
-[node name="level" type="Node" node_paths=PackedStringArray("tilemap_shadow")]
+[node name="level" type="Node" node_paths=PackedStringArray("tilemap", "player", "tilemap_shadow")]
 script = ExtResource("1_wcngd")
-tilemap_shadow = NodePath("TileMapLayerShadow")
-
-[node name="LvlGenerator" type="Node2D" parent="." node_paths=PackedStringArray("tilemap", "player", "tilemap_shadow")]
-script = ExtResource("8_xv074")
-tilemap = NodePath("../TileMapLayer")
-player = NodePath("../Player")
+tilemap = NodePath("TileMapLayer")
+player = NodePath("Player")
 closet = ExtResource("6_wcngd")
-tilemap_shadow = NodePath("../TileMapLayerShadow")
+tilemap_shadow = NodePath("TileMapLayer2")
+shadow_radius = null
+
+[node name="LvlGenerator" type="Node2D" parent="."]
+script = ExtResource("8_xv074")
+
+[node name="MobSpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_l1x8v")]
+mob_scene = ExtResource("3_i166f")
+player = NodePath("../Player")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("1_h3e3j")
@@ -33,13 +37,8 @@ visible = false
 scale = Vector2(0.03278694, 1.8039464)
 navigation_polygon = SubResource("NavigationPolygon_i166f")
 
-[node name="TileMapLayerShadow" type="TileMapLayer" parent="."]
-z_index = 10
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
 tile_set = ExtResource("1_h3e3j")
-
-[node name="MobSpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_l1x8v")]
-mob_scene = ExtResource("3_i166f")
-player = NodePath("../Player")
 
 [node name="FlourManager" parent="." instance=ExtResource("5_hnne4")]
 
