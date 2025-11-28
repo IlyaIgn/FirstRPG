@@ -1,8 +1,9 @@
 extends Node2D
 
+#var tween : Tween
 var current_weight : int = randi_range(1,3)
 
-func play_open_animation():
+func play_give_animation():
 	var anim = get_node("AnimationPlayer") as AnimationPlayer
 	anim.play("open")
 

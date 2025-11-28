@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbkajr0njymw7"]
+[gd_scene load_steps=14 format=3 uid="uid://dbkajr0njymw7"]
 
 [ext_resource type="Script" uid="uid://trsacck3dfpp" path="res://scenes/objects/closet/closet.gd" id="1_yeyky"]
+[ext_resource type="PackedScene" uid="uid://b5fgo4ue2d642" path="res://scenes/components/award/Award.tscn" id="2_lr6w4"]
 [ext_resource type="Texture2D" uid="uid://c1kctsoqsq5ik" path="res://assets/Objects/closet.png" id="2_nu32p"]
+[ext_resource type="PackedScene" uid="uid://oag62unyuoxe" path="res://scenes/objects/flour/flour_resource.tscn" id="3_iw7ma"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nu32p"]
 
@@ -48,8 +50,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iw7ma"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2lo6"]
+bg_color = Color(0, 0.7216547, 0.30074775, 1)
+
 [node name="Closet" type="Node2D"]
 script = ExtResource("1_yeyky")
+
+[node name="Award" parent="." instance=ExtResource("2_lr6w4")]
+award_scene = ExtResource("3_iw7ma")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -66,8 +77,22 @@ frame = 1
 frame_progress = 0.8519204
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(24, 4)
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = -8.0
+pivot_offset = Vector2(12, 2)
+theme_override_styles/background = SubResource("StyleBoxFlat_iw7ma")
+theme_override_styles/fill = SubResource("StyleBoxFlat_d2lo6")
+max_value = 1.0
+value = 0.5
+show_percentage = false
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

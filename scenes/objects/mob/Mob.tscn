@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cl3llyp26ag5j"]
+[gd_scene load_steps=20 format=3 uid="uid://cl3llyp26ag5j"]
 
 [ext_resource type="Script" uid="uid://5owwbm5431p" path="res://scenes/objects/mob/mob.gd" id="1_wplut"]
 [ext_resource type="Texture2D" uid="uid://dnkgf724f7er3" path="res://assets/Character/mobs/goblin_idle_anim_f0.png" id="2_ecghj"]
@@ -16,6 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://c3skrh5b6pgd1" path="res://assets/Character/mobs/goblin_run_anim_f3.png" id="9_j02m4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wplut"]
+radius = 7.0
+height = 23.80951
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f1ej7"]
 animations = [{
@@ -71,9 +75,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wplut"]
-radius = 7.0
-height = 23.80951
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_giitt"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii4pw"]
+bg_color = Color(0.31918353, 0.70595515, 0, 1)
 
 [node name="Mob" type="CharacterBody2D" groups=["Mobs"]]
 collision_layer = 0
@@ -84,16 +90,9 @@ speed = 75
 max_health = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(1, -4)
 scale = Vector2(0.5947588, 0.61510766)
 shape = SubResource("CircleShape2D_u8vuu")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -8)
-sprite_frames = SubResource("SpriteFrames_f1ej7")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.039863728
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
@@ -104,8 +103,26 @@ position = Vector2(1, -6)
 scale = Vector2(0.84000045, 0.68000096)
 shape = SubResource("CapsuleShape2D_wplut")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_f1ej7")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.039863728
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(24, 4)
+offset_left = -12.0
+offset_top = -20.0
+offset_right = 12.0
+offset_bottom = -16.0
+pivot_offset = Vector2(12, 2)
+theme_override_styles/background = SubResource("StyleBoxFlat_giitt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ii4pw")
+show_percentage = false
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
