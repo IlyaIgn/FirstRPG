@@ -7,38 +7,32 @@ extends CharacterBody2D
 @export var lock_time_sec : int = 4
 @onready var healt_manager: Node2D = $HealtManager
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var is_lock = false
+var is_lock = true
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	progress_bar.max_value = healt_manager.get_max_health()
 	progress_bar.value = healt_manager.get_max_health()
 	(healt_manager as HealtManager).died.connect(_on_died)
 	(healt_manager as HealtManager).health_change.connect(_on_healt_change)
+	animation_player.play("spawn")
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var player = get_tree().get_first_node_in_group("Player") as Node2D
-	nav_agent.target_position=player.global_position
-	#if need_lock and is_lock:
-		#return
-		#
-	#var direction = move_player()
-	#if direction:
-		#velocity = direction * speed
-		#play_animation(direction)
-		#move_and_slide()
+	if is_lock:
+		return
 		
-#func move_player():
-	#var player = get_tree().get_first_node_in_group("Player") as Node2D
-	#if player:
-		#return Vector2(player.global_position - global_position).normalized()
-	#else:
-		#return
+	var player = get_tree().get_first_node_in_group("Player") as Node2D
+	if not player:
+		return
+		
+	nav_agent.target_position=player.global_position
 		
 func _physics_process(delta: float) -> void:		
+	if is_lock:
+		return
+		
 	if NavigationServer2D.map_get_iteration_id(nav_agent.get_navigation_map()) == 0:
 		return
 		
@@ -54,7 +48,6 @@ func _physics_process(delta: float) -> void:
 	velocity = direction_to_target * speed
 	nav_agent.velocity = direction_to_target * speed
 	move_and_slide()
-	
 	
 func play_animation(direction: Vector2):
 	var animation_sprite : AnimatedSprite2D = get_node("AnimatedSprite2D")
@@ -92,3 +85,7 @@ func _on_healt_change(current_healt) -> void:
 func _on_died() -> void:
 	queue_free()
 	pass # Replace with function body.
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "spawn":
+		is_lock = false;

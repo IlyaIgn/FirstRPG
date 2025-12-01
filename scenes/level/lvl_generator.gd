@@ -4,16 +4,17 @@ extends Node2D
 @export var player: CharacterBody2D
 @export var lootbox: PackedScene
 @export var tilemap_shadow: TileMapLayer
-#@export var noise: FastNoiseLite
 
+const ENTER_TILE = Vector2i(5,12)
 var FLOOR_TILE = Vector2i(2,4)
 const WALL_TILE = Vector2i(1,1)
+const GATE_TILE = Vector2i(6,9)
 const SHADOW_ON_TILE = Vector2i(22,16)
 
 var main_rooms : Array[Rect2]
 const DUNGEON_WIDTH = 80
 const DUNGEON_HEIGHT = 80
-enum TileType { EMPTY, FLOOR, WALL }
+enum TileType { EMPTY, FLOOR, WALL, GATE }
 var dungeon_grid = []
 
 func _ready() -> void:
@@ -24,15 +25,9 @@ func get_lvl_size() -> Vector2i:
 	return Vector2i(DUNGEON_WIDTH, DUNGEON_HEIGHT)
 	
 func get_new_mob_pos():
-	var player_room : Rect2
-	for room in main_rooms:
-		if room.has_point(player.position):
-			player_room = room
-	
-	var room_num = randi_range(0, main_rooms.size() - 1 )
-	while main_rooms[room_num] == player_room:
-		room_num = randi_range(0, main_rooms.size() - 1)
-	return main_rooms[room_num].get_center() * 16
+	var room_num = randf_range(0, main_rooms.size()-1)
+	var spawn_pos = Vector2(main_rooms[room_num].position.x+1,main_rooms[room_num].position.y+1) * 16
+	return spawn_pos + Vector2(8,8)
 		
 func generate_dungeon():
 	dungeon_grid = []
@@ -63,6 +58,7 @@ func generate_dungeon():
 			for iy in range(y, y + h):
 				for ix in range(x, x + w):
 					dungeon_grid[iy][ix] = TileType.FLOOR
+			dungeon_grid[y+1][x+1] = TileType.GATE
 			
 			if rooms.size() > 1:
 				var prev = rooms[rooms.size() - 2].get_center()
@@ -75,22 +71,19 @@ func generate_dungeon():
 
 func generate_lootbox():
 	for room in main_rooms:
-		var spawn_x = randi_range(room.position.x, room.position.x + room.size.x)
-		var spawn_y = randi_range(room.position.y, room.position.y + room.size.y)
+		var spawn_x = randf_range(room.position.x + 0.5, room.position.x + room.size.x - 0.5)
+		var spawn_y = randf_range(room.position.y + 2, room.position.y + room.size.y - 0.5)
 		
 		var rotate_val = 0
 		
-		if spawn_x == room.position.x:
-			spawn_x += 1
+		spawn_y =  room.position.y + room.size.y - 0.5
+		
+		if spawn_x == room.position.x + 0.5:
 			rotate_val = -90
-		elif spawn_x == room.position.x + room.size.x:
-			spawn_x -= 1
+		elif spawn_x == room.position.x + room.size.x - 0.5:
 			rotate_val = 90
 			
-		if spawn_y == room.position.y:
-			spawn_y += 0.5
-		elif spawn_y == room.position.y + room.size.y:
-			spawn_y -= 0.5
+		if spawn_y == room.position.y + room.size.y - 0.5:
 			rotate_val = 180
 		
 		var lootbox_point = Vector2(spawn_x, spawn_y)
@@ -152,19 +145,23 @@ func render_dungeon():
 					tilemap.set_cell(Vector2i(x, y), 0, FLOOR_TILE)
 				TileType.WALL: 
 					tilemap.set_cell(Vector2i(x, y), 0, WALL_TILE)
+				TileType.GATE: 
+					tilemap.set_cell(Vector2i(x, y), 0, GATE_TILE)
 			tilemap_shadow.set_cell(Vector2i(x, y), 1, SHADOW_ON_TILE)
  
 func create_closet(lootbox_pos : Vector2, rotate_val : int = 0):
 	var lootbox_instance = lootbox.instantiate() as Node2D
 	get_parent().add_child(lootbox_instance)
 	lootbox_instance.global_position = lootbox_pos * 16
-	lootbox_instance.rotation = rotate_val
+	lootbox_instance.rotate(deg_to_rad(rotate_val))
 	
 func place_player():
-	player.position = main_rooms.pick_random().get_center() * 16
+	var room_center_pos =  main_rooms.pick_random().get_center() * 16
+	player.position = room_center_pos
+	tilemap.set_cell((room_center_pos / 16) + Vector2(1,-1), 0, ENTER_TILE)
 		
 func create_dungeon():
 	main_rooms = generate_dungeon()
-	place_player()
 	add_walls()
 	render_dungeon()
+	place_player()

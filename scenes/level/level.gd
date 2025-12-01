@@ -5,10 +5,13 @@ extends Node
 @onready var player: CharacterBody2D = $Player
 @onready var lvl_generator: Node2D = $LvlGenerator
 
+@export var end_screen : PackedScene
+
 const SHADOW_OFF_TILE = Vector2i(24,16)
 
 func _ready() -> void:
 	lvl_generator.generate_lootbox()
+	player.healt_manager.died.connect(_on_died)
 	pass
 	
 func clear_shadow():
@@ -27,4 +30,8 @@ func _process(delta: float) -> void:
 
 func get_new_mob_pos():
 	return lvl_generator.get_new_mob_pos()
+	
+func _on_died():
+	var end_screen_instance = end_screen.instantiate()
+	get_parent().add_child(end_screen_instance)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cl3llyp26ag5j"]
+[gd_scene load_steps=19 format=3 uid="uid://cl3llyp26ag5j"]
 
 [ext_resource type="Script" uid="uid://5owwbm5431p" path="res://scenes/objects/mob/mob.gd" id="1_wplut"]
 [ext_resource type="Texture2D" uid="uid://dnkgf724f7er3" path="res://assets/Character/mobs/goblin_idle_anim_f0.png" id="2_ecghj"]
@@ -6,13 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://crw4vspxkl762" path="res://assets/Character/mobs/goblin_idle_anim_f1.png" id="3_wec7m"]
 [ext_resource type="Texture2D" uid="uid://cggmdducqq4dr" path="res://assets/Character/mobs/goblin_idle_anim_f2.png" id="4_i8tx3"]
 [ext_resource type="Texture2D" uid="uid://dn3eg1f2ll5as" path="res://assets/Character/mobs/goblin_idle_anim_f3.png" id="5_vhs1m"]
-[ext_resource type="Texture2D" uid="uid://ca2fkcvi8tdsg" path="res://assets/Character/mobs/goblin_idle_anim_f0_2.png" id="6_ufv5g"]
 [ext_resource type="Texture2D" uid="uid://yd6auxih51pl" path="res://assets/Character/mobs/goblin_run_anim_f0.png" id="6_vhs1m"]
 [ext_resource type="Texture2D" uid="uid://bqk3yiw25oqm" path="res://assets/Character/mobs/goblin_run_anim_f1.png" id="7_81as3"]
-[ext_resource type="Texture2D" uid="uid://c7h6nfjfxa3xu" path="res://assets/Character/mobs/goblin_idle_anim_f1_2.png" id="7_xka8w"]
 [ext_resource type="Texture2D" uid="uid://ga5xce470lxk" path="res://assets/Character/mobs/goblin_run_anim_f2.png" id="8_4vj78"]
-[ext_resource type="Texture2D" uid="uid://dfybop3dqt4nq" path="res://assets/Character/mobs/goblin_idle_anim_f2_2.png" id="8_onxr1"]
-[ext_resource type="Texture2D" uid="uid://dnceuguxref2o" path="res://assets/Character/mobs/goblin_idle_anim_f3_2.png" id="9_canii"]
 [ext_resource type="Texture2D" uid="uid://c3skrh5b6pgd1" path="res://assets/Character/mobs/goblin_run_anim_f3.png" id="9_j02m4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
@@ -42,23 +38,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_ufv5g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_xka8w")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_onxr1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_canii")
-}],
-"loop": true,
-"name": &"lock",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("6_vhs1m")
 }, {
 "duration": 1.0,
@@ -80,6 +59,42 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii4pw"]
 bg_color = Color(0.31918353, 0.70595515, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ii4pw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_giitt"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.9318717, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e647x"]
+_data = {
+&"RESET": SubResource("Animation_ii4pw"),
+&"spawn": SubResource("Animation_giitt")
+}
 
 [node name="Mob" type="CharacterBody2D" groups=["Mobs"]]
 collision_layer = 0
@@ -108,7 +123,6 @@ position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_f1ej7")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.039863728
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
@@ -126,5 +140,13 @@ show_percentage = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e647x")
+}
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="current_animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_current_animation_changed"]

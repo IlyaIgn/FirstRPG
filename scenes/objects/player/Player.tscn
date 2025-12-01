@@ -156,7 +156,7 @@ script = ExtResource("1_gmlin")
 nav_agent = NodePath("NavigationAgent2D")
 
 [node name="HealtManager" parent="." instance=ExtResource("2_01b03")]
-max_health = 100
+max_health = 50
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 17

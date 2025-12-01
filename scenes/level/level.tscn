@@ -1,17 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddds6n5ljheaj"]
+[gd_scene load_steps=11 format=3 uid="uid://ddds6n5ljheaj"]
 
 [ext_resource type="TileSet" uid="uid://b51c68ikrsa5l" path="res://scenes/level/level.tres" id="1_h3e3j"]
 [ext_resource type="Script" uid="uid://coek3tvtsqo2y" path="res://scenes/level/level.gd" id="1_wcngd"]
 [ext_resource type="PackedScene" uid="uid://ce2kepi2tpbxv" path="res://scenes/objects/player/Player.tscn" id="2_nbgty"]
+[ext_resource type="PackedScene" uid="uid://do6r6seeqg7h3" path="res://scenes/ui/EndScreen.tscn" id="2_sytrn"]
 [ext_resource type="PackedScene" uid="uid://cl3llyp26ag5j" path="res://scenes/objects/mob/Mob.tscn" id="3_i166f"]
 [ext_resource type="PackedScene" uid="uid://s0la73bw4xt4" path="res://scenes/managers/spawner/MobSpawner.tscn" id="3_l1x8v"]
 [ext_resource type="PackedScene" uid="uid://go7dfpq4fkic" path="res://scenes/managers/flour/flour_manager.tscn" id="5_hnne4"]
 [ext_resource type="PackedScene" uid="uid://dbkajr0njymw7" path="res://scenes/objects/lootbox/lootbox.tscn" id="6_wcngd"]
 [ext_resource type="Script" uid="uid://l2hlqu6io4jh" path="res://scenes/level/lvl_generator.gd" id="8_xv074"]
+[ext_resource type="PackedScene" uid="uid://bpuqouqmwa2e5" path="res://scenes/ui/lvl_storage/Inventory.tscn" id="10_tf2q7"]
 
 [node name="level" type="Node" node_paths=PackedStringArray("tilemap_shadow")]
 script = ExtResource("1_wcngd")
 tilemap_shadow = NodePath("TileMapLayerShadow")
+end_screen = ExtResource("2_sytrn")
 
 [node name="LvlGenerator" type="Node2D" parent="." node_paths=PackedStringArray("tilemap", "player", "tilemap_shadow")]
 script = ExtResource("8_xv074")
@@ -24,7 +27,6 @@ tilemap_shadow = NodePath("../TileMapLayerShadow")
 tile_set = ExtResource("1_h3e3j")
 
 [node name="TileMapLayerShadow" type="TileMapLayer" parent="."]
-visible = false
 z_index = 10
 tile_set = ExtResource("1_h3e3j")
 
@@ -36,4 +38,5 @@ player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("2_nbgty")]
 position = Vector2(45, 38)
-safe_margin = 20.0
+
+[node name="Inventory" parent="." instance=ExtResource("10_tf2q7")]

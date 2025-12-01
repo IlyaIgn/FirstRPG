@@ -8,6 +8,6 @@ func _on_timer_timeout() -> void:
 		return
 	
 	var spawn_pos = get_parent().get_new_mob_pos()
-	var enemy = mob_scene.instantiate() as Node2D
+	var enemy = mob_scene.instantiate()
 	enemy.global_position = spawn_pos
 	get_parent().add_child(enemy)

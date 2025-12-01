@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var healt_manager: Node2D = $HealtManager
 
@@ -79,5 +80,6 @@ func _on_healt_change(current_healt) -> void:
 	pass # Replace with function body.
 	
 func _on_died() -> void:
+	
 	queue_free()
 	pass # Replace with function body.
