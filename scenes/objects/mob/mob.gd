@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var speed : int = 200
 @export var lock_time_sec : int = 4
 @onready var healt_manager: Node2D = $HealtManager
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 
 var is_lock = false
 
@@ -19,21 +20,41 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if need_lock and is_lock:
+	var player = get_tree().get_first_node_in_group("Player") as Node2D
+	nav_agent.target_position=player.global_position
+	#if need_lock and is_lock:
+		#return
+		#
+	#var direction = move_player()
+	#if direction:
+		#velocity = direction * speed
+		#play_animation(direction)
+		#move_and_slide()
+		
+#func move_player():
+	#var player = get_tree().get_first_node_in_group("Player") as Node2D
+	#if player:
+		#return Vector2(player.global_position - global_position).normalized()
+	#else:
+		#return
+		
+func _physics_process(delta: float) -> void:		
+	if NavigationServer2D.map_get_iteration_id(nav_agent.get_navigation_map()) == 0:
 		return
 		
-	var direction = move_player()
-	if direction:
-		velocity = direction * speed
-		play_animation(direction)
-		move_and_slide()
-
-func move_player():
-	var player = get_tree().get_first_node_in_group("Player") as Node2D
-	if player:
-		return Vector2(player.global_position - global_position).normalized()
-	else:
+	if nav_agent.is_navigation_finished() or nav_agent.is_target_reached():
+		play_animation(Vector2.ZERO)
 		return
+		
+	var next_pos = nav_agent.get_next_path_position()
+	var direction_to_target = global_position.direction_to(next_pos)
+	
+	play_animation(direction_to_target)
+	
+	velocity = direction_to_target * speed
+	nav_agent.velocity = direction_to_target * speed
+	move_and_slide()
+	
 	
 func play_animation(direction: Vector2):
 	var animation_sprite : AnimatedSprite2D = get_node("AnimatedSprite2D")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dbkajr0njymw7"]
 
-[ext_resource type="Script" uid="uid://trsacck3dfpp" path="res://scenes/objects/closet/closet.gd" id="1_yeyky"]
+[ext_resource type="Script" uid="uid://trsacck3dfpp" path="res://scenes/objects/lootbox/lootbox.gd" id="1_yeyky"]
 [ext_resource type="PackedScene" uid="uid://b5fgo4ue2d642" path="res://scenes/components/award/Award.tscn" id="2_lr6w4"]
 [ext_resource type="Texture2D" uid="uid://c1kctsoqsq5ik" path="res://assets/Objects/closet.png" id="2_nu32p"]
 [ext_resource type="PackedScene" uid="uid://oag62unyuoxe" path="res://scenes/objects/flour/flour_resource.tscn" id="3_iw7ma"]
@@ -56,7 +56,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2lo6"]
 bg_color = Color(0, 0.7216547, 0.30074775, 1)
 
-[node name="Closet" type="Node2D"]
+[node name="Lootbox" type="Node2D"]
 script = ExtResource("1_yeyky")
 
 [node name="Award" parent="." instance=ExtResource("2_lr6w4")]

@@ -8,6 +8,7 @@ extends Node
 const SHADOW_OFF_TILE = Vector2i(24,16)
 
 func _ready() -> void:
+	lvl_generator.generate_lootbox()
 	pass
 	
 func clear_shadow():

@@ -2,10 +2,11 @@ extends Node2D
 
 @export var tilemap: TileMapLayer
 @export var player: CharacterBody2D
-@export var closet: PackedScene
+@export var lootbox: PackedScene
 @export var tilemap_shadow: TileMapLayer
+#@export var noise: FastNoiseLite
 
-const FLOOR_TILE = Vector2i(2,4)
+var FLOOR_TILE = Vector2i(2,4)
 const WALL_TILE = Vector2i(1,1)
 const SHADOW_ON_TILE = Vector2i(22,16)
 
@@ -62,6 +63,7 @@ func generate_dungeon():
 			for iy in range(y, y + h):
 				for ix in range(x, x + w):
 					dungeon_grid[iy][ix] = TileType.FLOOR
+			
 			if rooms.size() > 1:
 				var prev = rooms[rooms.size() - 2].get_center()
 				var curr = room.get_center()
@@ -70,7 +72,31 @@ func generate_dungeon():
 		tries += 1
  
 	return rooms
- 
+
+func generate_lootbox():
+	for room in main_rooms:
+		var spawn_x = randi_range(room.position.x, room.position.x + room.size.x)
+		var spawn_y = randi_range(room.position.y, room.position.y + room.size.y)
+		
+		var rotate_val = 0
+		
+		if spawn_x == room.position.x:
+			spawn_x += 1
+			rotate_val = -90
+		elif spawn_x == room.position.x + room.size.x:
+			spawn_x -= 1
+			rotate_val = 90
+			
+		if spawn_y == room.position.y:
+			spawn_y += 0.5
+		elif spawn_y == room.position.y + room.size.y:
+			spawn_y -= 0.5
+			rotate_val = 180
+		
+		var lootbox_point = Vector2(spawn_x, spawn_y)
+		create_closet(lootbox_point, rotate_val)
+	pass
+	
 func carve_corridor(from: Vector2, to: Vector2, width: int = 2):
 	var min_width = -width / 2
 	var max_width = width / 2
@@ -122,27 +148,23 @@ func render_dungeon():
 			var tile = dungeon_grid[y][x]
 			match tile:
 				TileType.FLOOR: 
+					FLOOR_TILE.x = randf_range(1,3)
 					tilemap.set_cell(Vector2i(x, y), 0, FLOOR_TILE)
 				TileType.WALL: 
 					tilemap.set_cell(Vector2i(x, y), 0, WALL_TILE)
 			tilemap_shadow.set_cell(Vector2i(x, y), 1, SHADOW_ON_TILE)
  
-func create_closet(exclude_room : Vector2):
-	var closet_instance = closet.instantiate() as Node2D
-	closet_instance.position = main_rooms.pick_random().get_center() * 16
-	while closet_instance.position == exclude_room:
-		closet_instance.position = main_rooms.pick_random().get_center() * 16
-	add_child(closet_instance)
+func create_closet(lootbox_pos : Vector2, rotate_val : int = 0):
+	var lootbox_instance = lootbox.instantiate() as Node2D
+	get_parent().add_child(lootbox_instance)
+	lootbox_instance.global_position = lootbox_pos * 16
+	lootbox_instance.rotation = rotate_val
 	
 func place_player():
 	player.position = main_rooms.pick_random().get_center() * 16
-	for x in range(7):
-		create_closet(player.position)
 		
 func create_dungeon():
 	main_rooms = generate_dungeon()
 	place_player()
 	add_walls()
 	render_dungeon()
-
-		
