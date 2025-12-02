@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddds6n5ljheaj"]
+[gd_scene load_steps=12 format=3 uid="uid://ddds6n5ljheaj"]
 
 [ext_resource type="TileSet" uid="uid://b51c68ikrsa5l" path="res://scenes/level/level.tres" id="1_h3e3j"]
 [ext_resource type="Script" uid="uid://coek3tvtsqo2y" path="res://scenes/level/level.gd" id="1_wcngd"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dbkajr0njymw7" path="res://scenes/objects/lootbox/lootbox.tscn" id="6_wcngd"]
 [ext_resource type="Script" uid="uid://l2hlqu6io4jh" path="res://scenes/level/lvl_generator.gd" id="8_xv074"]
 [ext_resource type="PackedScene" uid="uid://bpuqouqmwa2e5" path="res://scenes/ui/lvl_storage/Inventory.tscn" id="10_tf2q7"]
+[ext_resource type="Script" uid="uid://mur0i8l2exxw" path="res://addons/touch_screen_joystick/touch_screen_joystick.gd" id="11_pe1ox"]
 
 [node name="level" type="Node" node_paths=PackedStringArray("tilemap_shadow")]
 script = ExtResource("1_wcngd")
@@ -39,4 +40,30 @@ player = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource("2_nbgty")]
 position = Vector2(45, 38)
 
-[node name="Inventory" parent="." instance=ExtResource("10_tf2q7")]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Top" type="VBoxContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tools" parent="UI/Top" instance=ExtResource("10_tf2q7")]
+layout_mode = 2
+
+[node name="EventProgress" type="MarginContainer" parent="UI/Top"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/Top/EventProgress"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+value = 25.0
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Top"]
+layout_mode = 2
+size_flags_vertical = 8
+script = ExtResource("11_pe1ox")
