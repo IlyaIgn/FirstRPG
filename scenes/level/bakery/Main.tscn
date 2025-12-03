@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://dg3yp06fvr4bj"]
 
-[ext_resource type="PackedScene" uid="uid://ce2kepi2tpbxv" path="res://scenes/objects/player/Player.tscn" id="1_3bxyo"]
+[ext_resource type="PackedScene" uid="uid://ce2kepi2tpbxv" path="res://scenes/objects/general/player/Player.tscn" id="1_3bxyo"]
 [ext_resource type="Script" uid="uid://bib2u3qwjo51j" path="res://scenes/level/bakery/main.gd" id="1_08van"]
 [ext_resource type="TileSet" uid="uid://b51c68ikrsa5l" path="res://assets/Tileset/main.tres" id="2_08van"]
 [ext_resource type="Script" uid="uid://mur0i8l2exxw" path="res://addons/touch_screen_joystick/touch_screen_joystick.gd" id="5_03g5n"]

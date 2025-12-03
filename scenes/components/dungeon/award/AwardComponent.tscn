@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5fgo4ue2d642"]
+
+[ext_resource type="Script" uid="uid://d1iff10x5ml0t" path="res://scenes/components/dungeon/award/award_component.gd" id="1_kued1"]
+
+[node name="Award" type="Node2D"]
+script = ExtResource("1_kued1")

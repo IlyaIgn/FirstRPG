@@ -1,0 +1,147 @@
+[gd_scene load_steps=20 format=3 uid="uid://cl3llyp26ag5j"]
+
+[ext_resource type="Script" uid="uid://5owwbm5431p" path="res://scenes/objects/dungeon/mob/mob.gd" id="1_wplut"]
+[ext_resource type="Texture2D" uid="uid://dnkgf724f7er3" path="res://assets/Character/mobs/goblin_idle_anim_f0.png" id="2_ecghj"]
+[ext_resource type="PackedScene" uid="uid://b2ayevqw6lkg8" path="res://scenes/components/dungeon/healt/HealtComponent.tscn" id="2_giitt"]
+[ext_resource type="PackedScene" uid="uid://brkf7nt8v0ph7" path="res://scenes/components/dungeon/hurt_box/HurtBoxComponent.tscn" id="3_2hukw"]
+[ext_resource type="Texture2D" uid="uid://crw4vspxkl762" path="res://assets/Character/mobs/goblin_idle_anim_f1.png" id="3_wec7m"]
+[ext_resource type="Texture2D" uid="uid://cggmdducqq4dr" path="res://assets/Character/mobs/goblin_idle_anim_f2.png" id="4_i8tx3"]
+[ext_resource type="Texture2D" uid="uid://dn3eg1f2ll5as" path="res://assets/Character/mobs/goblin_idle_anim_f3.png" id="5_vhs1m"]
+[ext_resource type="Texture2D" uid="uid://yd6auxih51pl" path="res://assets/Character/mobs/goblin_run_anim_f0.png" id="6_vhs1m"]
+[ext_resource type="Texture2D" uid="uid://bqk3yiw25oqm" path="res://assets/Character/mobs/goblin_run_anim_f1.png" id="7_81as3"]
+[ext_resource type="Texture2D" uid="uid://ga5xce470lxk" path="res://assets/Character/mobs/goblin_run_anim_f2.png" id="8_4vj78"]
+[ext_resource type="Texture2D" uid="uid://c3skrh5b6pgd1" path="res://assets/Character/mobs/goblin_run_anim_f3.png" id="9_j02m4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_htldr"]
+radius = 7.0
+height = 23.80951
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1ej7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ecghj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wec7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i8tx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vhs1m")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vhs1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_81as3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4vj78")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_j02m4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_giitt"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii4pw"]
+bg_color = Color(0.31918353, 0.70595515, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ii4pw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_giitt"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.9318717, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e647x"]
+_data = {
+&"RESET": SubResource("Animation_ii4pw"),
+&"spawn": SubResource("Animation_giitt")
+}
+
+[node name="Mob" type="CharacterBody2D" groups=["Mobs"]]
+collision_layer = 0
+script = ExtResource("1_wplut")
+speed = 75
+
+[node name="HealtManager" parent="." instance=ExtResource("2_giitt")]
+max_health = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -4)
+scale = Vector2(0.5947588, 0.61510766)
+shape = SubResource("CircleShape2D_u8vuu")
+
+[node name="HeartBox" parent="." node_paths=PackedStringArray("healt_manager") instance=ExtResource("3_2hukw")]
+healt_manager = NodePath("../HealtManager")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HeartBox"]
+position = Vector2(1, -6)
+scale = Vector2(0.84000045, 0.68000096)
+shape = SubResource("CapsuleShape2D_htldr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_f1ej7")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(24, 4)
+offset_left = -12.0
+offset_top = -20.0
+offset_right = 12.0
+offset_bottom = -16.0
+pivot_offset = Vector2(12, 2)
+theme_override_styles/background = SubResource("StyleBoxFlat_giitt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ii4pw")
+show_percentage = false
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e647x")
+}
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="current_animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_current_animation_changed"]

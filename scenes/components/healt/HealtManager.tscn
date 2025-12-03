@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2ayevqw6lkg8"]
-
-[ext_resource type="Script" uid="uid://bn8q2ovbet4de" path="res://scenes/components/healt/healt_manager.gd" id="1_wfcso"]
-
-[node name="HealtManager" type="Node2D"]
-script = ExtResource("1_wfcso")
