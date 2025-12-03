@@ -6,7 +6,7 @@ func _ready() -> void:
 
 func _on_restart_btn_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/level/level.tscn")
+	get_tree().change_scene_to_file("res://scenes/level/bakery/Main.tscn")
 	queue_free()
 	pass # Replace with function body.
 

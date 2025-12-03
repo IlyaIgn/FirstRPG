@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ce2kepi2tpbxv"]
+[gd_scene load_steps=27 format=3 uid="uid://ce2kepi2tpbxv"]
 
 [ext_resource type="Script" uid="uid://c55lqy121p0ld" path="res://scenes/objects/player/player.gd" id="1_gmlin"]
 [ext_resource type="PackedScene" uid="uid://b2ayevqw6lkg8" path="res://scenes/components/healt/HealtManager.tscn" id="2_01b03"]
@@ -8,6 +8,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_8krch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_01b03"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_524rm"]
 atlas = ExtResource("3_4kuee")
@@ -144,11 +146,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01b03"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="Animation" id="Animation_cmv0x"]
+resource_name = "damage"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmv0x"]
-bg_color = Color(0.29749736, 0.7090142, 3.85046e-07, 1)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fd8ud"]
+_data = {
+&"damage": SubResource("Animation_cmv0x")
+}
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent") groups=["Player"]]
 collision_layer = 0
@@ -178,26 +182,20 @@ scale = Vector2(0.68000066, 1)
 shape = SubResource("CircleShape2D_u8vuu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_01b03")
 position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_f1ej7")
-animation = &"walk_side"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.95590335
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(24, 4)
-offset_left = -12.0
-offset_top = -32.0
-offset_right = 12.0
-offset_bottom = -28.0
-pivot_offset = Vector2(12, 4)
-theme_override_styles/background = SubResource("StyleBoxFlat_01b03")
-theme_override_styles/fill = SubResource("StyleBoxFlat_cmv0x")
-show_percentage = false
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fd8ud")
+}
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
