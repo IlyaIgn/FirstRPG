@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var healt_manager: Node2D = $HealtManager
 

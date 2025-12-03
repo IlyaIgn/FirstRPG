@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjaaexyr3fppt"]
+
+[ext_resource type="Script" uid="uid://c24bwipgc2yqu" path="res://scenes/ui/bakery/main_ui.gd" id="1_btcpy"]
+[ext_resource type="Script" uid="uid://mur0i8l2exxw" path="res://addons/touch_screen_joystick/touch_screen_joystick.gd" id="1_f1kae"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_btcpy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -130.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 70
+
+[node name="Control" type="Control" parent="MarginContainer2"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_f1kae")
+antialiased = true
+deadzone = 15.0
+base_radius = 60.0
+knob_radius = 30.0
+use_input_actions = true
+action_left = &"move_left"
+action_right = &"move_right"
+action_up = &"move_up"
+action_down = &"move_down"

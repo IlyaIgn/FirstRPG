@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://5owwbm5431p" path="res://scenes/objects/dungeon/mob/mob.gd" id="1_wplut"]
 [ext_resource type="Texture2D" uid="uid://dnkgf724f7er3" path="res://assets/Character/mobs/goblin_idle_anim_f0.png" id="2_ecghj"]
-[ext_resource type="PackedScene" uid="uid://b2ayevqw6lkg8" path="res://scenes/components/dungeon/healt/HealtComponent.tscn" id="2_giitt"]
-[ext_resource type="PackedScene" uid="uid://brkf7nt8v0ph7" path="res://scenes/components/dungeon/hurt_box/HurtBoxComponent.tscn" id="3_2hukw"]
+[ext_resource type="PackedScene" uid="uid://b2ayevqw6lkg8" path="res://scenes/components/dungeon/healt/healt_component.tscn" id="2_giitt"]
+[ext_resource type="PackedScene" uid="uid://brkf7nt8v0ph7" path="res://scenes/components/dungeon/hurt_box/hurt_box_component.tscn" id="3_2hukw"]
 [ext_resource type="Texture2D" uid="uid://crw4vspxkl762" path="res://assets/Character/mobs/goblin_idle_anim_f1.png" id="3_wec7m"]
 [ext_resource type="Texture2D" uid="uid://cggmdducqq4dr" path="res://assets/Character/mobs/goblin_idle_anim_f2.png" id="4_i8tx3"]
 [ext_resource type="Texture2D" uid="uid://dn3eg1f2ll5as" path="res://assets/Character/mobs/goblin_idle_anim_f3.png" id="5_vhs1m"]

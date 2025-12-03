@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddw05x8v7mefv"]
+
+[ext_resource type="Script" uid="uid://cg74ys252gb5p" path="res://scenes/managers/dungeon/time/arena_time_manager.gd" id="1_x684u"]
+
+[node name="ArenaTimeManager" type="Node2D"]
+script = ExtResource("1_x684u")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true

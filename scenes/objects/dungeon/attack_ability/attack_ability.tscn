@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cgtiexgjyohbp" path="res://scenes/objects/dungeon/attack_ability/attack_ability.gd" id="1_xmd5r"]
 [ext_resource type="Texture2D" uid="uid://bnsllfhbn3nc5" path="res://assets/Objects/egg.png" id="1_y1hhr"]
-[ext_resource type="PackedScene" uid="uid://cj47tth51q8js" path="res://scenes/components/dungeon/hit_box/HitBoxComponent.tscn" id="3_glg0d"]
+[ext_resource type="PackedScene" uid="uid://cj47tth51q8js" path="res://scenes/components/dungeon/hit_box/hit_box_component.tscn" id="3_glg0d"]
 
 [sub_resource type="Animation" id="Animation_by60a"]
 length = 0.001

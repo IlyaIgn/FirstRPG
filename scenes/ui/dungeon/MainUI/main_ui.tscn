@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3ql5j58ibyj"]
+
+[ext_resource type="Script" uid="uid://cnlnd5idj5x1r" path="res://scenes/ui/dungeon/MainUI/main_ui.gd" id="1_naklk"]
+[ext_resource type="PackedScene" uid="uid://bpuqouqmwa2e5" path="res://scenes/ui/dungeon/lvl_storage/Inventory.tscn" id="2_x2xs2"]
+[ext_resource type="StyleBox" uid="uid://etj3tlasxwo1" path="res://scenes/level/dungeon/dungeon_healt_pb.tres" id="3_btxk3"]
+[ext_resource type="Script" uid="uid://mur0i8l2exxw" path="res://addons/touch_screen_joystick/touch_screen_joystick.gd" id="5_p3b1r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dj1co"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="MainUI" type="CanvasLayer"]
+script = ExtResource("1_naklk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Time" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Time"]
+layout_mode = 2
+text = "Timer"
+horizontal_alignment = 1
+
+[node name="Tools" parent="VBoxContainer" instance=ExtResource("2_x2xs2")]
+layout_mode = 2
+
+[node name="HealthProgress" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/HealthProgress"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_dj1co")
+theme_override_styles/fill = ExtResource("3_btxk3")
+value = 25.0
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -130.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 70
+
+[node name="Control" type="Control" parent="MarginContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("5_p3b1r")
+antialiased = true
+deadzone = 15.0
+base_radius = 60.0
+knob_radius = 30.0
+use_input_actions = true
+action_left = &"move_left"
+action_right = &"move_right"
+action_up = &"move_up"
+action_down = &"move_down"
