@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://do6r6seeqg7h3"]
 
-[ext_resource type="Script" uid="uid://sch2m5sw7i3s" path="res://scenes/ui/dungeon/end_screen/end_screen.gd" id="1_1ad5n"]
+[ext_resource type="Script" uid="uid://sch2m5sw7i3s" path="res://scenes/ui/general/end_screen/end_screen.gd" id="1_1ad5n"]
 
 [node name="EndScreen" type="CanvasLayer"]
 process_mode = 3
@@ -34,13 +34,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Game Over"
 
-[node name="HomeBtn" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="FirstBtn" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Home"
 
-[node name="RestartBtn" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SecondBtn" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Restart"
 
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HomeBtn" to="." method="_on_restart_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/RestartBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/FirstBtn" to="." method="_on_first_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SecondBtn" to="." method="_on_second_btn_pressed"]

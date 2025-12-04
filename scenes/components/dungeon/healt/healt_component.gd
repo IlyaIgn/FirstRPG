@@ -16,7 +16,7 @@ func get_max_health():
 func damage(damage_count):
 	current_healt = max(current_healt - damage_count, 0)
 	health_change.emit(current_healt)
-	check_heath()
+	Callable(check_heath).call_deferred()
 	
 func check_heath():
 	if current_healt == 0:

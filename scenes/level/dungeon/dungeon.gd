@@ -13,7 +13,7 @@ extends Node
 const SHADOW_OFF_TILE = Vector2i(24,16)
 
 func _ready() -> void:
-	arena_time_manager.timeout.connect(_on_died)
+	arena_time_manager.timeout.connect(_on_timeout)
 	if player:
 		player.healt_manager.died.connect(_on_died)
 	pass
@@ -40,9 +40,10 @@ func _on_died():
 	if end_screen:
 		var end_screen_instance = end_screen.instantiate() as EndScreen
 		get_parent().add_child(end_screen_instance)
+		end_screen_instance.set_type(EndScreen.SCREEN_TYPE.END)
 	
 func _on_timeout():
 	if end_screen:
 		var end_screen_instance = end_screen.instantiate() as EndScreen
 		get_parent().add_child(end_screen_instance)
-		end_screen_instance.set_tile_txt("Timeout")
+		end_screen_instance.set_type(EndScreen.SCREEN_TYPE.TIMEOUT)
