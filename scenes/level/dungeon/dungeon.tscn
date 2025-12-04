@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cl3llyp26ag5j" path="res://scenes/objects/dungeon/mob/mob.tscn" id="7_qiuh5"]
 [ext_resource type="PackedScene" uid="uid://go7dfpq4fkic" path="res://scenes/managers/dungeon/flour/flour_manager.tscn" id="8_bew3f"]
 [ext_resource type="PackedScene" uid="uid://ce2kepi2tpbxv" path="res://scenes/objects/general/player/Player.tscn" id="9_c12d2"]
-[ext_resource type="PackedScene" uid="uid://d3ql5j58ibyj" path="res://scenes/ui/dungeon/MainUI/main_ui.tscn" id="10_cqm7d"]
+[ext_resource type="PackedScene" uid="uid://d3ql5j58ibyj" path="res://scenes/ui/dungeon/main_ui/main_ui.tscn" id="10_cqm7d"]
 
 [node name="level" type="Node"]
 script = ExtResource("1_dj1co")

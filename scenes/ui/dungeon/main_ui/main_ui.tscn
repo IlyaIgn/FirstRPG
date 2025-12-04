@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d3ql5j58ibyj"]
 
-[ext_resource type="Script" uid="uid://cnlnd5idj5x1r" path="res://scenes/ui/dungeon/MainUI/main_ui.gd" id="1_naklk"]
+[ext_resource type="Script" uid="uid://cnlnd5idj5x1r" path="res://scenes/ui/dungeon/main_ui/main_ui.gd" id="1_naklk"]
 [ext_resource type="PackedScene" uid="uid://bpuqouqmwa2e5" path="res://scenes/ui/dungeon/lvl_storage/Inventory.tscn" id="2_x2xs2"]
 [ext_resource type="StyleBox" uid="uid://etj3tlasxwo1" path="res://scenes/level/dungeon/dungeon_healt_pb.tres" id="3_btxk3"]
 [ext_resource type="Script" uid="uid://mur0i8l2exxw" path="res://addons/touch_screen_joystick/touch_screen_joystick.gd" id="5_p3b1r"]

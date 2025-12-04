@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://dg3yp06fvr4bj"]
+[gd_scene load_steps=7 format=4 uid="uid://dg3yp06fvr4bj"]
 
 [ext_resource type="PackedScene" uid="uid://ce2kepi2tpbxv" path="res://scenes/objects/general/player/Player.tscn" id="1_3bxyo"]
 [ext_resource type="Script" uid="uid://bib2u3qwjo51j" path="res://scenes/level/bakery/bakery.gd" id="1_08van"]
 [ext_resource type="TileSet" uid="uid://b51c68ikrsa5l" path="res://assets/Tileset/main.tres" id="2_08van"]
+[ext_resource type="PackedScene" uid="uid://do6r6seeqg7h3" path="res://scenes/ui/general/end_screen/end_screen.tscn" id="2_gs32f"]
 [ext_resource type="PackedScene" uid="uid://bjaaexyr3fppt" path="res://scenes/ui/bakery/main_ui.tscn" id="4_7u1at"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3bxyo"]
@@ -10,6 +11,7 @@ size = Vector2(26, 33)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_08van")
+end_screen = ExtResource("2_gs32f")
 
 [node name="TileMapLayerBlack" type="TileMapLayer" parent="."]
 position = Vector2(226, -327)
