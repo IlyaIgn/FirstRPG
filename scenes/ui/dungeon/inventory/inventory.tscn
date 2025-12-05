@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpuqouqmwa2e5"]
 
-[ext_resource type="Script" uid="uid://cuemw06nl21uc" path="res://scenes/ui/dungeon/lvl_storage/label.gd" id="1_eluca"]
+[ext_resource type="Script" uid="uid://do4ooos3qdagp" path="res://scenes/ui/dungeon/inventory/inventory.gd" id="1_6ulh5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0ljs"]
 bg_color = Color(0.6157306, 0.6724, 0.67024416, 1)
@@ -25,6 +25,7 @@ anchor_right = 1.0
 offset_bottom = 40.0
 grow_horizontal = 2
 size_flags_vertical = 0
+script = ExtResource("1_6ulh5")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -114,11 +115,10 @@ show_percentage = false
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer2"]
+[node name="FlourName" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Мука:"
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer2"]
+[node name="FlourValue" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 text = "0"
-script = ExtResource("1_eluca")

@@ -7,7 +7,6 @@ extends Node
 @onready var tilemap_shadow: TileMapLayer = $TileMapLayerShadow
 @onready var player: CharacterBody2D = $Player
 @onready var lvl_generator: Node2D = $LvlGenerator
-@onready var flour_manager: Node2D = $FlourManager
 @onready var arena_time_manager: ArenaTimeManager = $ArenaTimeManager
 
 const SHADOW_OFF_TILE = Vector2i(24,16)
@@ -35,7 +34,7 @@ func _process(delta: float) -> void:
 func get_new_mob_pos():
 	if lvl_generator:
 		return lvl_generator.get_new_mob_pos()
-	
+		
 func _on_died():
 	if end_screen:
 		var end_screen_instance = end_screen.instantiate() as EndScreen
@@ -47,3 +46,6 @@ func _on_timeout():
 		var end_screen_instance = end_screen.instantiate() as EndScreen
 		get_parent().add_child(end_screen_instance)
 		end_screen_instance.set_type(EndScreen.SCREEN_TYPE.TIMEOUT)
+
+func _on_tree_exiting() -> void:
+	Global.set_total_award()

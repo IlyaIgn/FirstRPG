@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://go7dfpq4fkic"]
-
-[ext_resource type="Script" uid="uid://cmh7ei1yug525" path="res://scenes/managers/dungeon/flour/flour_manager.gd" id="1_j32be"]
-
-[node name="FlourManager" type="Node2D"]
-script = ExtResource("1_j32be")

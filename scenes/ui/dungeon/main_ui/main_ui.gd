@@ -17,7 +17,6 @@ func _process(delta: float) -> void:
 	if player:
 		health_progress_bar.value = player.healt_manager.current_healt
 
-
 func format_timer(seconds : int):
 	var min = floor(seconds / 60)
 	var sec = seconds - (min * 60)
