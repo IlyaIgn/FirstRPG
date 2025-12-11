@@ -119,7 +119,7 @@ shape = SubResource("CircleShape2D_u8vuu")
 [node name="HeartBox" parent="." node_paths=PackedStringArray("healt_manager") instance=ExtResource("3_2hukw")]
 healt_manager = NodePath("../HealtManager")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HeartBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeartBox"]
 position = Vector2(1, -6)
 scale = Vector2(0.84000045, 0.68000096)
 shape = SubResource("CapsuleShape2D_htldr")

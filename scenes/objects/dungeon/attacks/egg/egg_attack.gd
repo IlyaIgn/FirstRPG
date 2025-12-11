@@ -1,5 +1,5 @@
 extends Node2D
-class_name AttackAbility
+class_name EggAbility
 
 @onready var hit_box: HitBox = $HitBox
 @export var speed = 100

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4u80lls38vlq"]
+
+[ext_resource type="Script" uid="uid://dh5tbgak1dr6" path="res://scenes/objects/dungeon/attacks/sword/sword_attack.gd" id="1_bu0ou"]
+[ext_resource type="Texture2D" uid="uid://bm3t3oqudkgwl" path="res://assets/Objects/sword_attack.tres" id="2_bu0ou"]
+[ext_resource type="PackedScene" uid="uid://cj47tth51q8js" path="res://scenes/components/dungeon/hit_box/hit_box_component.tscn" id="3_08jxb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwste"]
+size = Vector2(27.083405, 34.21054)
+
+[node name="SwordAttack" type="Node2D"]
+script = ExtResource("1_bu0ou")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_bu0ou")
+
+[node name="HitBox" parent="." instance=ExtResource("3_08jxb")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-0.5000001, 1.0000001)
+scale = Vector2(0.47999877, 0.7599997)
+shape = SubResource("RectangleShape2D_vwste")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

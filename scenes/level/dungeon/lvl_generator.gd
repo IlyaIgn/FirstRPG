@@ -1,7 +1,6 @@
 extends Node2D
 
 @export var tilemap_floor: TileMapLayer
-@export var tilemap_shadow: TileMapLayer
 @export var player: CharacterBody2D
 
 var FLOOR_TILE = Vector2i(2,4)
@@ -39,8 +38,10 @@ func generate_dungeon():
 	var tries = 0
  
 	while rooms.size() < 10 and tries < max_attempts:
-		var w = randi_range(8, 16)
-		var h = randi_range(8, 16)
+		#var w = randi_range(16, 32)
+		#var h = randi_range(16, 32)
+		var w = randi_range(8,16)
+		var h = randi_range(8,16)
 		var x = randi_range(1, DUNGEON_WIDTH - w - 1)
 		var y = randi_range(1, DUNGEON_HEIGHT - h - 1)
 		var room = Rect2(x, y, w, h)
@@ -124,7 +125,6 @@ func render_dungeon():
 					tilemap_floor.set_cell(Vector2i(x, y), 0, WALL_TILE)
 				TileType.GATE: 
 					tilemap_floor.set_cell(Vector2i(x, y), 0, GATE_TILE)
-			tilemap_shadow.set_cell(Vector2i(x, y), 1, SHADOW_ON_TILE)
 	
 func place_player():
 	var room_center_pos =  main_rooms.pick_random().get_center() * 16

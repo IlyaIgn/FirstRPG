@@ -3,8 +3,9 @@ extends CanvasLayer
 @export var player : Player
 @export var time_manager : ArenaTimeManager
 
-@onready var time_label: Label = $VBoxContainer/Time/Label
-@onready var health_progress_bar: ProgressBar = $VBoxContainer/HealthProgress/ProgressBar
+@onready var time_label: Label = $InfoContainer/Time/Label
+@onready var health_progress_bar: ProgressBar = $InfoContainer/HealthProgress/ProgressBar
+@onready var flour_value: Label = $InfoContainer/MarginContainer/HBoxContainer/FlourValue
 
 func _ready() -> void:
 	if player:
@@ -16,6 +17,9 @@ func _process(delta: float) -> void:
 		time_label.text = format_timer(time_sec)
 	if player:
 		health_progress_bar.value = player.healt_manager.current_healt
+	if flour_value:
+		flour_value.text = str(DungeonState.get_dungeon_award()["flour"])
+		
 
 func format_timer(seconds : int):
 	var min = floor(seconds / 60)

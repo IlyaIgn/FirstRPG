@@ -12,5 +12,4 @@ func _on_area_entered(area: Area2D) -> void:
 		
 	var hitbox = area as HitBox
 	healt_manager.damage(hitbox.damage)
-	owner.queue_free()
 	pass # Replace with function body.

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3ak88g7usqdc"]
+
+[ext_resource type="Script" uid="uid://ok6ovct3sqdp" path="res://scenes/ui/dungeon/attack_card/attack_card.gd" id="1_1vy1r"]
+[ext_resource type="Texture2D" uid="uid://cjjpexts1lpsa" path="res://assets/Objects/circle.png" id="2_1wbo5"]
+[ext_resource type="Texture2D" uid="uid://bnsllfhbn3nc5" path="res://assets/Objects/egg.png" id="2_vkim3"]
+
+[node name="MarginContainer" type="PanelContainer"]
+clip_contents = true
+offset_right = 50.0
+offset_bottom = 50.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_1vy1r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(25, 25)
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("2_vkim3")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+step = 0.05
+value = 2.0
+fill_mode = 5
+texture_under = ExtResource("2_1wbo5")
+texture_progress = ExtResource("2_1wbo5")
+tint_under = Color(0.2509804, 0.2509804, 0.2509804, 0.49019608)
+tint_progress = Color(0, 0.89411765, 0.18431373, 0.49019608)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

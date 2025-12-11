@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://dg3yp06fvr4bj"]
+[gd_scene load_steps=8 format=4 uid="uid://dg3yp06fvr4bj"]
 
-[ext_resource type="PackedScene" uid="uid://ce2kepi2tpbxv" path="res://scenes/objects/general/player/Player.tscn" id="1_3bxyo"]
+[ext_resource type="PackedScene" uid="uid://ce2kepi2tpbxv" path="res://scenes/objects/bakery/home_player/Player.tscn" id="1_3bxyo"]
 [ext_resource type="Script" uid="uid://bib2u3qwjo51j" path="res://scenes/level/bakery/bakery.gd" id="1_08van"]
-[ext_resource type="TileSet" uid="uid://b51c68ikrsa5l" path="res://assets/Tileset/main.tres" id="2_08van"]
+[ext_resource type="TileSet" uid="uid://b51c68ikrsa5l" path="res://resources/main.tres" id="2_08van"]
 [ext_resource type="PackedScene" uid="uid://do6r6seeqg7h3" path="res://scenes/ui/general/end_screen/end_screen.tscn" id="2_gs32f"]
 [ext_resource type="PackedScene" uid="uid://bjaaexyr3fppt" path="res://scenes/ui/bakery/main_ui.tscn" id="4_7u1at"]
+[ext_resource type="PackedScene" uid="uid://7cwlm2w73sf4" path="res://scenes/objects/bakery/pc/pc.tscn" id="4_jpvbh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3bxyo"]
 size = Vector2(26, 33)
@@ -25,7 +26,7 @@ tile_set = ExtResource("2_08van")
 
 [node name="env" type="TileMapLayer" parent="."]
 position = Vector2(338, 505)
-tile_map_data = PackedByteArray("AADq/+H/AgADAAMAAADq/9//AgAEAAIAAADq/+D/AgAEAAIAAADq/97/AgAJAAAAAADo/9z/AgACAAgAAADr/9//AgAEAAQAAADr/97/AgAEAAMAAADp/9//AgABAAcAAADv/9z/AgAJAAMAAADv/93/AgAJAAQAAADw/9z/AgAKAAMAAADw/93/AgAKAAQAAAD0/9r/AQAUABAAAAD0/9v/AQAUABAAAAD0/9z/AgADAAYAAAD0/93/AgADAAYAAAD0/97/AgADAAYAAAD0/9//AgADAAYAAAD0/+D/AgADAAYAAAD0/+H/AgADAAYAAAD0/+L/AgADAAYAAAD0/+P/AgADAAYAAAD0/+T/AgADAAYAAAD0/+X/AgADAAYAAAD0/+b/AgADAAYAAAD0/+f/AgADAAYAAAD0/+j/AgADAAYAAADm/+j/AgADAAYAAADn/+j/AgADAAYAAADo/+j/AgADAAYAAADp/+j/AgADAAYAAADq/+j/AgADAAYAAADr/+j/AgADAAYAAADs/+j/AgADAAYAAADt/+j/AgADAAYAAADu/+j/AgADAAYAAADv/+j/AgADAAYAAADw/+j/AgADAAYAAADx/+j/AgADAAYAAADy/+j/AgADAAYAAADz/+j/AgADAAYAAADm/9r/AQAUABAAAADm/9v/AQAUABAAAADm/9z/AgADAAYAAADm/93/AgADAAYAAADm/97/AgADAAYAAADm/9//AgADAAYAAADm/+D/AgADAAYAAADm/+H/AgADAAYAAADm/+L/AgADAAYAAADm/+P/AgADAAYAAADm/+T/AgADAAYAAADm/+X/AgADAAYAAADm/+b/AgADAAYAAADm/+f/AgADAAYAAAA=")
+tile_map_data = PackedByteArray("AADq/+H/AgAHAAMAAADq/+D/AgAEAAIAAADo/9z/AgACAAgAAADv/9z/AgAJAAMAAADv/93/AgAJAAQAAADw/9z/AgAKAAMAAADw/93/AgAKAAQAAAD0/9r/AQAUABAAAAD0/9v/AQAUABAAAAD0/9z/AgADAAYAAAD0/93/AgADAAYAAAD0/97/AgADAAYAAAD0/9//AgADAAYAAAD0/+D/AgADAAYAAAD0/+H/AgADAAYAAAD0/+L/AgADAAYAAAD0/+P/AgADAAYAAAD0/+T/AgADAAYAAAD0/+X/AgADAAYAAAD0/+b/AgADAAYAAAD0/+f/AgADAAYAAAD0/+j/AgADAAYAAADm/+j/AgADAAYAAADn/+j/AgADAAYAAADo/+j/AgADAAYAAADp/+j/AgADAAYAAADq/+j/AgADAAYAAADr/+j/AgADAAYAAADs/+j/AgADAAYAAADt/+j/AgADAAYAAADu/+j/AgADAAYAAADv/+j/AgADAAYAAADw/+j/AgADAAYAAADx/+j/AgADAAYAAADy/+j/AgADAAYAAADz/+j/AgADAAYAAADm/9r/AQAUABAAAADm/9v/AQAUABAAAADm/9z/AgADAAYAAADm/93/AgADAAYAAADm/97/AgADAAYAAADm/9//AgADAAYAAADm/+D/AgADAAYAAADm/+H/AgADAAYAAADm/+L/AgADAAYAAADm/+P/AgADAAYAAADm/+T/AgADAAYAAADm/+X/AgADAAYAAADm/+b/AgADAAYAAADm/+f/AgADAAYAAADp/+H/AgAGAAMAAADo/+H/AgAGAAMAAADn/+H/AgAGAAMAAADq/9//AgAJAAAAAADn/+T/AgAEAAMAAADn/+X/AgAEAAQAAADo/+X/AgAEAAMAAADo/+b/AgAEAAQAAADn/+b/AgAEAAMAAADn/+f/AgAEAAQAAADr/+X/AgACAAQAAADr/+b/AgACAAUAAADs/+X/AgADAAQAAADs/+b/AgADAAUAAADv/+X/AgACAAQAAADv/+b/AgACAAUAAADw/+X/AgADAAQAAADw/+b/AgADAAUAAADx/+L/AgACAAQAAADx/+P/AgACAAUAAADy/+L/AgADAAQAAADy/+P/AgADAAUAAAA=")
 tile_set = ExtResource("2_08van")
 
 [node name="Area2D" type="Area2D" parent="env"]
@@ -35,8 +36,11 @@ position = Vector2(-320, -305)
 position = Vector2(64, -255)
 shape = SubResource("RectangleShape2D_3bxyo")
 
+[node name="PC" parent="env" instance=ExtResource("4_jpvbh")]
+position = Vector2(-344, -508)
+
 [node name="Player" parent="." instance=ExtResource("1_3bxyo")]
-position = Vector2(41, 28)
+position = Vector2(41, 6)
 player_speed = 100
 
 [node name="UI" parent="." instance=ExtResource("4_7u1at")]
