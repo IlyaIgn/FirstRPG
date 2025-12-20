@@ -16,7 +16,7 @@ func set_type(new_screen_type : SCREEN_TYPE) -> void:
 	if current_type == SCREEN_TYPE.END:
 		name_lbl.text = "Game Over"
 		first_btn.text = "Restart"
-		second_btn.text = "Quit"
+		second_btn.text = "Home"
 		pass
 	elif current_type == SCREEN_TYPE.TIMEOUT:
 		name_lbl.text = "TIMEOUT"
@@ -48,7 +48,8 @@ func _on_first_btn_pressed() -> void:
 	
 func _on_second_btn_pressed() -> void:
 	if current_type == SCREEN_TYPE.END:
-		get_tree().quit()
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://scenes/level/bakery/bakery.tscn")
 		queue_free()
 	elif current_type == SCREEN_TYPE.TIMEOUT:
 		get_tree().paused = false
