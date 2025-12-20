@@ -24,6 +24,5 @@ func rotate_amin(rotations : float):
 	global_position = global_position + (current_direction * radius)
 	rotation = rotations * TAU
 	
-	
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	pass # Replace with function body.

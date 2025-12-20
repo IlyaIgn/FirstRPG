@@ -22,10 +22,10 @@ DungeonState="*res://scenes/global/dungeon_state.tscn"
 
 [display]
 
-window/size/viewport_width=360
-window/size/viewport_height=760
-window/size/window_width_override=360
-window/size/window_height_override=760
+window/size/viewport_width=760
+window/size/viewport_height=360
+window/size/window_width_override=760
+window/size/window_height_override=360
 
 [input]
 

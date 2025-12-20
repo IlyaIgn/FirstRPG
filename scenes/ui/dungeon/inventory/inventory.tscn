@@ -13,10 +13,15 @@ size_flags_vertical = 0
 script = ExtResource("1_6ulh5")
 attack_card = ExtResource("2_o6l6f")
 
-[node name="container" type="VBoxContainer" parent="."]
-clip_contents = true
-custom_minimum_size = Vector2(50, 200)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_constants/separation = 10
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(93, 267.00003)
+scale = Vector2(1.2361896, 1.2361896)
+
+[node name="BossAttack" type="Node2D" parent="Sprite2D"]
+position = Vector2(-65, -55)
+
+[node name="UniqueAttack" type="Node2D" parent="Sprite2D"]
+position = Vector2(-65, 15)
+
+[node name="SimpleAttack" type="Node2D" parent="Sprite2D"]
+position = Vector2(-5, 15)

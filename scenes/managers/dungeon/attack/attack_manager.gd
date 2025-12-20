@@ -52,6 +52,7 @@ func spawn_unique_attack(unique_attack):
 	var attack_instance = unique_attack.attack_scene.instantiate()
 	player.get_parent().add_child(attack_instance)
 	attack_instance.global_position = player_pos
+	
 	pass
 		
 func unique_attack():
@@ -63,8 +64,7 @@ func unique_attack():
 		return
 		
 	spawn_unique_attack(unique_attack)
-	DungeonState.unique_attack_progress -= unique_attack.condition
-	
+	DungeonState.give_dungeon_award("experience", -unique_attack.condition)
 	
 func _process(delta: float) -> void:
 	var regular_attack = DungeonState.regular_attack_abilities

@@ -27,6 +27,34 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
+[node name="StorageContainer" type="HBoxContainer" parent="InfoContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Flour" type="MarginContainer" parent="InfoContainer/StorageContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Value" type="Label" parent="InfoContainer/StorageContainer/Flour"]
+layout_mode = 2
+text = "Мука: 0"
+
+[node name="Water" type="MarginContainer" parent="InfoContainer/StorageContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Value" type="Label" parent="InfoContainer/StorageContainer/Water"]
+layout_mode = 2
+text = "Вода: 0"
+
+[node name="Yeast" type="MarginContainer" parent="InfoContainer/StorageContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Value" type="Label" parent="InfoContainer/StorageContainer/Yeast"]
+layout_mode = 2
+text = "Дрожжи: 0"
+
 [node name="Time" type="MarginContainer" parent="InfoContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
@@ -35,36 +63,6 @@ theme_override_constants/margin_top = 5
 layout_mode = 2
 text = "Timer"
 horizontal_alignment = 1
-
-[node name="HealthProgress" type="MarginContainer" parent="InfoContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 5
-
-[node name="ProgressBar" type="ProgressBar" parent="InfoContainer/HealthProgress"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_dj1co")
-theme_override_styles/fill = ExtResource("3_btxk3")
-value = 25.0
-show_percentage = false
-
-[node name="MarginContainer" type="MarginContainer" parent="InfoContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="InfoContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="FlourName" type="Label" parent="InfoContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "Мука:"
-
-[node name="FlourValue" type="Label" parent="InfoContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "0"
 
 [node name="ControlContainer" type="MarginContainer" parent="."]
 anchors_preset = 3
@@ -97,13 +95,28 @@ action_right = &"move_right"
 action_up = &"move_up"
 action_down = &"move_down"
 
+[node name="HealthProgress" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -380.0
+offset_top = -10.0
+offset_right = 380.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="HealthProgress"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_dj1co")
+theme_override_styles/fill = ExtResource("3_btxk3")
+value = 25.0
+show_percentage = false
+
 [node name="InventoryContainer" parent="." instance=ExtResource("2_x2xs2")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 310.0
-offset_top = 305.0
-offset_right = 360.0
-offset_bottom = 455.0
-size_flags_horizontal = 8
-size_flags_vertical = 4
+size_flags_vertical = 1

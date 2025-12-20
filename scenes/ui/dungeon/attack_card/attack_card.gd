@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Node2D
 class_name  AttackCard
 
 var attack_id: String

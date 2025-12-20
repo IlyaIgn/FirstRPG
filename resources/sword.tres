@@ -16,4 +16,4 @@ attack_image = ExtResource("1_taahv")
 damage = 5
 attack_range = 5
 type = 1
-condition = 1
+condition = 5
