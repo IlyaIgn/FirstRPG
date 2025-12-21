@@ -19,7 +19,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-		
 	var direction = move_player()
 	var target_velocity = direction * player_speed
 	velocity = velocity.lerp(target_velocity, acceleration)

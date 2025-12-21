@@ -10,6 +10,15 @@ extends Node
 
 const SHADOW_OFF_TILE = Vector2i(24,16)
 
+#@onready var color_rect: ColorRect = $CanvasLayer/ColorRect
+
+func _process(delta: float) -> void:
+	#if color_rect and player:
+	#var local_pos = color_rect.to_local(player.global_position)
+	#print(color_rect)
+	#color_rect.set("	shader_parameter/unit_position", local_pos)
+	pass
+
 func _ready() -> void:
 	arena_time_manager.timeout.connect(_on_timeout)
 	if player:

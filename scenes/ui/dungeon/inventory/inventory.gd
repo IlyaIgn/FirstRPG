@@ -1,6 +1,5 @@
 extends MarginContainer
 
-@onready var container: VBoxContainer = $container
 @export var attack_card : PackedScene
 
 @onready var simple_attack_node: Node2D = $Sprite2D/SimpleAttack

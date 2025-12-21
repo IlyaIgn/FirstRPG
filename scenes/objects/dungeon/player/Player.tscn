@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://c3shcd078l8n6"]
+[gd_scene load_steps=28 format=3 uid="uid://c3shcd078l8n6"]
 
 [ext_resource type="Script" uid="uid://1se7p01vmyft" path="res://scenes/objects/dungeon/player/player.gd" id="1_h4ipe"]
 [ext_resource type="PackedScene" uid="uid://b2ayevqw6lkg8" path="res://scenes/components/dungeon/healt/healt_component.tscn" id="2_lvqea"]
 [ext_resource type="PackedScene" uid="uid://b1k5f5hxslxl1" path="res://scenes/managers/dungeon/attack/attack_manager.tscn" id="3_0iyn3"]
 [ext_resource type="Texture2D" uid="uid://b8v0ide5sf4pj" path="res://assets/Character/new_character.png" id="4_qrnxr"]
+[ext_resource type="Texture2D" uid="uid://bhmnyrg27qeeu" path="res://assets/Objects/light.png" id="5_ebxsv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8krch"]
 
@@ -196,5 +197,10 @@ position_smoothing_enabled = true
 libraries = {
 &"": SubResource("AnimationLibrary_fd8ud")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+blend_mode = 2
+texture = ExtResource("5_ebxsv")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddds6n5ljheaj"]
+[gd_scene load_steps=10 format=4 uid="uid://ddds6n5ljheaj"]
 
 [ext_resource type="Script" uid="uid://coek3tvtsqo2y" path="res://scenes/level/dungeon/dungeon.gd" id="1_dj1co"]
 [ext_resource type="PackedScene" uid="uid://do6r6seeqg7h3" path="res://scenes/ui/general/end_screen/end_screen.tscn" id="2_8vd2o"]
@@ -15,7 +15,6 @@ script = ExtResource("1_dj1co")
 end_screen = ExtResource("2_8vd2o")
 
 [node name="LvlGenerator" type="Node2D" parent="." node_paths=PackedStringArray("tilemap_floor", "player")]
-z_index = -1
 script = ExtResource("3_hv2ta")
 tilemap_floor = NodePath("../TileMapLayerFloor")
 player = NodePath("../Player")
@@ -29,6 +28,7 @@ player = NodePath("../Player")
 
 [node name="TileMapLayerFloor" type="TileMapLayer" parent="."]
 position = Vector2(133, -90)
+tile_map_data = PackedByteArray("AAD4/wYAAwAbAAcAAAD4/wUAAwAbAAcAAAD3/wYAAwAbAAcAAAD3/wUAAwAbAAcAAAD2/wYAAwALAAcAAAD2/wUAAwALAAcAAAD2/wQAAwALAAYAAAD3/wQAAwAMAAYAAAD4/wQAAwAMAAYAAAD4/wcAAwAbAAcAAAD3/wcAAwAbAAcAAAD2/wcAAwALAAcAAAD5/wUAAwAbAAcAAAD5/wYAAwAbAAcAAAD5/wQAAwAMAAYAAAD5/wcAAwAbAAcAAAD8/wkAAwAbAAcAAAD8/wgAAwAbAAcAAAD8/wcAAwAbAAcAAAD8/wYAAwAbAAcAAAD8/wUAAwAbAAcAAAD7/wkAAwAbAAcAAAD7/wgAAwAbAAcAAAD7/wcAAwAbAAcAAAD7/wYAAwAbAAcAAAD7/wUAAwAbAAcAAAD6/wkAAwAbAAcAAAD6/wgAAwAbAAcAAAD6/wcAAwAbAAcAAAD6/wYAAwAbAAcAAAD6/wUAAwAbAAcAAAD5/wkAAwAbAAcAAAD5/wgAAwAbAAcAAAD4/wkAAwAbAAcAAAD4/wgAAwAbAAcAAAD3/wkAAwAbAAcAAAD3/wgAAwAbAAcAAAD2/wgAAwALAAcAAAD2/wkAAwALAAcAAAD4/woAAwAMAAgAAAD3/woAAwAMAAgAAAD2/woAAwALAAgAAAD5/woAAwAMAAgAAAD6/wQAAwAMAAYAAAD6/woAAwAMAAgAAAD7/wQAAwAMAAYAAAD7/woAAwAMAAgAAAD8/wQAAwAMAAYAAAD8/woAAwAMAAgAAAD9/wUAAwANAAcAAAD9/wYAAwANAAcAAAD9/wQAAwANAAYAAAD9/wcAAwANAAcAAAD9/wgAAwANAAcAAAD9/wkAAwANAAcAAAD9/woAAwANAAgAAAA=")
 tile_set = ExtResource("5_fk2cw")
 
 [node name="Player" parent="." instance=ExtResource("8_1u6lv")]
