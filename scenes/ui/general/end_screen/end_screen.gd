@@ -1,7 +1,7 @@
 extends CanvasLayer
 class_name EndScreen
 
-enum SCREEN_TYPE {END, TIMEOUT, DUNGEON}
+enum SCREEN_TYPE {END, TIMEOUT, DUNGEON, EXIT}
 var current_type = SCREEN_TYPE.END
 
 @onready var name_lbl: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/NameLbl
@@ -28,6 +28,11 @@ func set_type(new_screen_type : SCREEN_TYPE) -> void:
 		first_btn.text = "GO TO"
 		second_btn.text = "Back"
 		pass
+	elif current_type == SCREEN_TYPE.EXIT:
+		name_lbl.text = "DO YOU WANT EXIT"
+		first_btn.text = "GO HOME"
+		second_btn.text = "Back"
+		pass
 	pass
 
 func _on_first_btn_pressed() -> void:
@@ -44,6 +49,10 @@ func _on_first_btn_pressed() -> void:
 		get_tree().paused = false
 		get_tree().change_scene_to_file("res://scenes/level/dungeon/dungeon.tscn")
 		queue_free()
+	elif current_type == SCREEN_TYPE.EXIT:
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://scenes/level/bakery/bakery.tscn")
+		queue_free()
 	pass # Replace with function body.
 	
 func _on_second_btn_pressed() -> void:
@@ -57,6 +66,9 @@ func _on_second_btn_pressed() -> void:
 		queue_free()
 		pass
 	elif current_type == SCREEN_TYPE.DUNGEON:
+		get_tree().paused = false
+		queue_free()
+	elif current_type == SCREEN_TYPE.EXIT:
 		get_tree().paused = false
 		queue_free()
 	pass # Replace with function body.as

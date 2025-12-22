@@ -2,10 +2,11 @@ extends Node2D
 
 @export var tilemap_floor: TileMapLayer
 @export var tilemap_env: TileMapLayer
+@export var exit: PackedScene
 
 @export var player: CharacterBody2D
 
-const rooms_count = 5
+const rooms_count = 3
 var tile_list = []
 var main_rooms : Array[Rect2]
 const DUNGEON_WIDTH = rooms_count * 10
@@ -84,11 +85,18 @@ func is_in_bounds(x: int, y: int) -> bool:
 func set_gates():
 	dungeon_grid[2][0] = TileType.ENTER
 	
-	var last_room = main_rooms[main_rooms.size()-1]
-	var exit_pos = last_room.position + last_room.size / 2
-	exit_pos.x = last_room.position.x + last_room.size.x
-	dungeon_grid[exit_pos.y][exit_pos.x] = TileType.EXIT
-	pass
+	if randf() < 0.5:
+		for y in range(DUNGEON_HEIGHT - 1, 0 , -1):
+			for x in range(DUNGEON_WIDTH - 1, 0 , -1):
+				if dungeon_grid[y][x] == TileType.FLOOR:
+					dungeon_grid[y][x] = TileType.EXIT
+					return
+	else:
+		for x in range(DUNGEON_WIDTH - 1, 0 , -1):
+			for y in range(DUNGEON_HEIGHT - 1, 0 , -1):
+				if dungeon_grid[y][x] == TileType.FLOOR:
+					dungeon_grid[y][x] = TileType.EXIT
+					return
 	
 #func add_walls():
 	#for room in main_rooms:
@@ -111,8 +119,11 @@ func render_dungeon():
 			if dungeon_grid[y][x] == TileType.ENTER:
 				tilemap_env.set_cell(Vector2(x,y), 5, Vector2(7,3))
 				
-			if dungeon_grid[y][x] == TileType.EXIT:
-				tilemap_env.set_cell(Vector2(x,y), 7, Vector2(8,3))
+			if dungeon_grid[y][x] == TileType.EXIT:				
+				if exit:
+					var exit_instance = exit.instantiate()
+					exit_instance.global_position = Vector2(x,y) * 16
+					tilemap_env.add_child(exit_instance)
 				
 			#if dungeon_grid[y][x] == TileType.WALL:
 				#tilemap_env.set_cell(Vector2(x,y), 3, Vector2(27,8))

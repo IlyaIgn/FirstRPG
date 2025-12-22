@@ -10,6 +10,7 @@ func _process(delta: float) -> void:
 		if texture_progress_bar.max_value == texture_progress_bar.value:
 			texture_progress_bar.value = 0
 			Global.total_resource["gold"] += 1
+			Global.total_resource["flour"] -= 1
 			
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

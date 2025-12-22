@@ -7,8 +7,6 @@ class_name Player
 @export var player_speed : int = 150
 @export var nav_agent : NavigationAgent2D
 
-@onready var color_rect: ColorRect = $"../MainUI/ColorRect"
-
 var acceleration = 0.1
 
 # Called when the node enters the scene tree for the first time.
@@ -27,9 +25,7 @@ func _process(delta: float) -> void:
 	velocity = velocity.lerp(target_velocity, acceleration)
 	play_animation(direction)
 	move_and_slide()
-	
-	
-	
+
 func move_player():
 	var direction_x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var direction_y = Input.get_action_strength("move_down") - Input.get_action_raw_strength("move_up")
