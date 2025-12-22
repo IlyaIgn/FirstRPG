@@ -17,8 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://scenes/global/global.tscn"
-DungeonState="*res://scenes/global/dungeon_state.tscn"
+Global="*res://scenes/states/global_state.tscn"
+DungeonState="*res://scenes/states/dungeon_state.tscn"
+Economics="*res://resources/economics.gd"
 
 [display]
 

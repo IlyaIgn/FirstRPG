@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://brvmtlv4y3trr"]
 
-[ext_resource type="Script" uid="uid://c0eiscveyp5y1" path="res://scenes/global/dungeon_state.gd" id="1_kqaq8"]
+[ext_resource type="Script" uid="uid://c0eiscveyp5y1" path="res://scenes/states/dungeon_state.gd" id="1_kqaq8"]
 [ext_resource type="Resource" uid="uid://cnin0tc7e5exr" path="res://resources/egg.tres" id="2_mfcuo"]
 [ext_resource type="Resource" uid="uid://cw86s6ogb6yoc" path="res://resources/sword.tres" id="3_s042e"]
 

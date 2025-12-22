@@ -47,7 +47,8 @@ func _on_first_btn_pressed() -> void:
 		pass
 	elif current_type == SCREEN_TYPE.DUNGEON:
 		get_tree().paused = false
-		get_tree().change_scene_to_file("res://scenes/level/dungeon/dungeon.tscn")
+		if Global.take_award("wick", 1):
+			get_tree().change_scene_to_file("res://scenes/level/dungeon/dungeon.tscn")
 		queue_free()
 	elif current_type == SCREEN_TYPE.EXIT:
 		get_tree().paused = false

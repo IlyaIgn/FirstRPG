@@ -49,7 +49,7 @@ player_speed = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("player", "arena_time_manager")]
 material = SubResource("ShaderMaterial_8vd2o")
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,6 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_dj1co")
 player = NodePath("../../Player")
+arena_time_manager = NodePath("../../ArenaTimeManager")
 
 [node name="MainUI" parent="." node_paths=PackedStringArray("player", "time_manager") instance=ExtResource("10_cqm7d")]
 player = NodePath("../Player")

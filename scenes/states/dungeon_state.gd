@@ -1,7 +1,9 @@
 extends Node2D
 
 var dungeon_award = {
-	"flour": Global.get_total_award()["flour"],
+	"flour": 0,
+	"water": 0,
+	"yeast": 0,
 	"experience": 0
 }
 
@@ -22,5 +24,10 @@ func get_dungeon_award():
 	return dungeon_award
 	
 func save_dungeon_award():
-	Global.total_resource["flour"] = dungeon_award["flour"]
+	Global.give_award("flour", dungeon_award["flour"])
+	Global.give_award("water", dungeon_award["water"])
+	Global.give_award("yeast", dungeon_award["yeast"])
+	dungeon_award["flour"] = 0
+	dungeon_award["water"] = 0
+	dungeon_award["yeast"] = 0
 	

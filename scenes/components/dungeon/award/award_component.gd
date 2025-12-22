@@ -9,8 +9,8 @@ func _ready() -> void:
 func give_award():
 	DungeonState.give_dungeon_award("experience", 1)
 	
-	if randf() < 0.7:
-		return
+	#if randf() < 0.7:
+		#return
 		
 	if not award_scene:
 		return

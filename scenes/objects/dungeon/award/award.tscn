@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://oag62unyuoxe"]
 
-[ext_resource type="Script" uid="uid://d2se1viw2et6d" path="res://scenes/objects/dungeon/flour/flour.gd" id="1_aifxh"]
-[ext_resource type="Texture2D" uid="uid://dx0s4luvu2ew1" path="res://assets/Objects/flour.png" id="2_58dy7"]
+[ext_resource type="Script" uid="uid://d2se1viw2et6d" path="res://scenes/objects/dungeon/award/award.gd" id="1_ruqix"]
+[ext_resource type="Texture2D" uid="uid://dx0s4luvu2ew1" path="res://assets/Objects/flour.png" id="2_u43bx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_58dy7"]
 
 [node name="Flour" type="Node2D"]
-script = ExtResource("1_aifxh")
+script = ExtResource("1_ruqix")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_58dy7")
+scale = Vector2(0.055, 0.055)
+texture = ExtResource("2_u43bx")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
