@@ -3,7 +3,7 @@ class_name SwordAbility
 
 @onready var hit_box: HitBox = $HitBox
 
-var radius = 5
+var radius = 10
 var base_direction = Vector2.RIGHT
 
 func _ready() -> void:
@@ -20,8 +20,12 @@ func _ready() -> void:
 
 
 func rotate_amin(rotations : float):	
-	var current_direction = base_direction.rotated(rotations * TAU)
-	global_position = global_position + (current_direction * radius)
+	var player = get_tree().get_first_node_in_group("Player")
+	if not player:
+		return
+		
+	#var current_direction = base_direction.rotated(rotations * TAU)
+	global_position = player.global_position 
 	rotation = rotations * TAU
 	
 func _on_hit_box_area_entered(area: Area2D) -> void:

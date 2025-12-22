@@ -6,6 +6,9 @@ class_name Player
 @export  var progress_bar: ProgressBar
 @export var player_speed : int = 150
 @export var nav_agent : NavigationAgent2D
+
+@onready var color_rect: ColorRect = $"../MainUI/ColorRect"
+
 var acceleration = 0.1
 
 # Called when the node enters the scene tree for the first time.
@@ -24,6 +27,8 @@ func _process(delta: float) -> void:
 	velocity = velocity.lerp(target_velocity, acceleration)
 	play_animation(direction)
 	move_and_slide()
+	
+	
 	
 func move_player():
 	var direction_x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -48,7 +53,7 @@ func play_animation(direction: Vector2):
 		animation_sprite.flip_h = true
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	healt_manager.damage(5)
+	healt_manager.damage(1)
 	pass # Replace with function body.
 
 func _on_healt_change(current_healt) -> void:

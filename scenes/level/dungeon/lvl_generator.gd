@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var tilemap_floor: TileMapLayer
+@export var tilemap_env: TileMapLayer
+
 @export var player: CharacterBody2D
 
 const rooms_count = 5
@@ -8,7 +10,7 @@ var tile_list = []
 var main_rooms : Array[Rect2]
 const DUNGEON_WIDTH = rooms_count * 10
 const DUNGEON_HEIGHT = DUNGEON_WIDTH
-enum TileType { EMPTY, FLOOR, WALL, GATE }
+enum TileType { EMPTY, FLOOR, WALL, ENTER, EXIT }
 var dungeon_grid = []
 
 func _ready() -> void:
@@ -17,11 +19,6 @@ func _ready() -> void:
 
 func get_lvl_size() -> Vector2i:
 	return Vector2i(DUNGEON_WIDTH, DUNGEON_HEIGHT)
-	
-func get_new_mob_pos():
-	var room_num = randf_range(0, main_rooms.size()-1)
-	var spawn_pos = Vector2(main_rooms[room_num].position.x+1,main_rooms[room_num].position.y+1) * 16
-	return spawn_pos + Vector2(8,8)
 		
 func generate_dungeon():
 	dungeon_grid = []
@@ -84,27 +81,52 @@ func carve_corridor(from: Vector2, to: Vector2):
 func is_in_bounds(x: int, y: int) -> bool:
 	return x >= 0 and y >= 0 and x < DUNGEON_WIDTH and y < DUNGEON_HEIGHT
  
-func add_walls():
+func set_gates():
+	dungeon_grid[2][0] = TileType.ENTER
+	
+	var last_room = main_rooms[main_rooms.size()-1]
+	var exit_pos = last_room.position + last_room.size / 2
+	exit_pos.x = last_room.position.x + last_room.size.x
+	dungeon_grid[exit_pos.y][exit_pos.x] = TileType.EXIT
 	pass
+	
+#func add_walls():
+	#for room in main_rooms:
+		#for x in range(room.position.x, room.size.x + 1):
+			#dungeon_grid[room.position.y][x] = TileType.WALL
+	#pass
  
 func render_dungeon():
 	tile_list.clear()
 	tilemap_floor.clear()
 	for y in range(DUNGEON_HEIGHT):
 		for x in range(DUNGEON_WIDTH):
-			if dungeon_grid[y][x] == TileType.FLOOR:
+			if dungeon_grid[y][x] != TileType.EMPTY:
 				tile_list.append(Vector2(x,y))
+				
 	tilemap_floor.set_cells_terrain_connect(tile_list, 0, 0, false)
+	
+	for y in range(DUNGEON_HEIGHT):
+		for x in range(DUNGEON_WIDTH):
+			if dungeon_grid[y][x] == TileType.ENTER:
+				tilemap_env.set_cell(Vector2(x,y), 5, Vector2(7,3))
+				
+			if dungeon_grid[y][x] == TileType.EXIT:
+				tilemap_env.set_cell(Vector2(x,y), 7, Vector2(8,3))
+				
+			#if dungeon_grid[y][x] == TileType.WALL:
+				#tilemap_env.set_cell(Vector2(x,y), 3, Vector2(27,8))
 	
 func place_player():
 	for y in range(DUNGEON_HEIGHT):
 		for x in range(DUNGEON_WIDTH):
 			if dungeon_grid[y][x] == TileType.FLOOR:
-				player.position = Vector2(180,-25)
+				player.position = Vector2(20,48)
 				return
 		
 func create_dungeon():
 	main_rooms = generate_dungeon()
-	add_walls()
+	#add_walls()
+	set_gates()
 	render_dungeon()
 	place_player()

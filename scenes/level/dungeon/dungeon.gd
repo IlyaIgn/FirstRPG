@@ -10,14 +10,11 @@ extends Node
 
 const SHADOW_OFF_TILE = Vector2i(24,16)
 
-#@onready var color_rect: ColorRect = $CanvasLayer/ColorRect
-
-func _process(delta: float) -> void:
+#func _process(delta: float) -> void:
 	#if color_rect and player:
-	#var local_pos = color_rect.to_local(player.global_position)
-	#print(color_rect)
-	#color_rect.set("	shader_parameter/unit_position", local_pos)
-	pass
+		#var local_pos = color_rect.to_local(player.global_position)
+		#color_rect.set("shader_parameter/player_pos", local_pos)
+	#pass
 
 func _ready() -> void:
 	arena_time_manager.timeout.connect(_on_timeout)
@@ -25,10 +22,6 @@ func _ready() -> void:
 		player.healt_manager.died.connect(_on_died)
 	pass
 
-func get_new_mob_pos():
-	if lvl_generator:
-		return lvl_generator.get_new_mob_pos()
-		
 func _on_died():
 	if end_screen:
 		var end_screen_instance = end_screen.instantiate() as EndScreen
